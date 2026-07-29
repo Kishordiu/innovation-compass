@@ -45,15 +45,9 @@ export function SiteHeader() {
           ))}
           <Link
             to="/login"
-            className="ml-2 rounded-full border border-border px-4 py-2 text-sm font-medium transition-colors hover:border-gold/50"
+            className="shimmer-cta ml-2 rounded-full gold-gradient px-5 py-2 text-sm font-semibold text-gold-foreground shadow-[var(--shadow-soft)] transition-transform duration-300 hover:-translate-y-0.5"
           >
             Sign in
-          </Link>
-          <Link
-            to="/dashboard"
-            className="shimmer-cta ml-1 rounded-full gold-gradient px-5 py-2 text-sm font-semibold text-gold-foreground shadow-[var(--shadow-soft)] transition-transform duration-300 hover:-translate-y-0.5"
-          >
-            Enter platform
           </Link>
         </nav>
 
@@ -73,7 +67,7 @@ export function SiteHeader() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.4, ease: [0.2, 0.9, 0.3, 1] }}
             className="overflow-hidden border-t border-border/70 md:hidden"
           >
             <div className="flex flex-col gap-1 px-5 py-4">
@@ -90,16 +84,9 @@ export function SiteHeader() {
               <Link
                 to="/login"
                 onClick={() => setOpen(false)}
-                className="rounded-xl px-3 py-3 text-sm font-medium text-muted-foreground"
-              >
-                Sign in
-              </Link>
-              <Link
-                to="/dashboard"
-                onClick={() => setOpen(false)}
                 className="mt-1 rounded-xl gold-gradient px-3 py-3 text-center text-sm font-semibold text-gold-foreground"
               >
-                Enter platform
+                Sign in
               </Link>
             </div>
           </motion.div>
@@ -154,7 +141,6 @@ export function SiteFooter() {
         </div>
         <p className="mt-12 border-t border-border/70 pt-6 text-xs text-muted-foreground">
           © {new Date().getFullYear()} Innovation DNA · Dhaanish Ahmed College of Engineering.
-          Demo experience with sample data.
         </p>
       </div>
     </footer>

@@ -5,6 +5,7 @@ import { ArrowRight, GraduationCap, Lock, Mail } from "lucide-react";
 import { AmbientBackdrop } from "@/components/ui-kit";
 import { colleges, roles, roleProfiles, type Role } from "@/data/mock-data";
 import { cn } from "@/lib/utils";
+import { useRole } from "@/hooks/use-role";
 
 export const Route = createFileRoute("/login")({
   head: () => ({
@@ -30,6 +31,8 @@ function LoginPage() {
   const [role, setRole] = useState<Role>("Student");
   const [college, setCollege] = useState(colleges[0]);
   const profile = roleProfiles[role];
+
+  const { setRole: setContextRole } = useRole();
 
   return (
     <div className="relative flex min-h-screen items-center justify-center px-5 py-14">
@@ -57,6 +60,7 @@ function LoginPage() {
             className="mt-8 space-y-6"
             onSubmit={(event) => {
               event.preventDefault();
+              setContextRole(role);
               navigate({ to: "/dashboard" });
             }}
           >

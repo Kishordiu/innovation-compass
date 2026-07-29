@@ -39,9 +39,9 @@ function LandingPage() {
 
       <section className="mx-auto max-w-6xl px-5 pb-20 pt-16 sm:px-8 sm:pb-28 sm:pt-24">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          initial={{ opacity: 0, y: 24, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.8, ease: [0.2, 0.9, 0.3, 1] }}
           className="max-w-3xl"
         >
           <Pill tone="gold">
@@ -62,12 +62,6 @@ function LandingPage() {
               className="shimmer-cta inline-flex items-center justify-center gap-2 rounded-full gold-gradient px-7 py-3.5 text-sm font-semibold text-gold-foreground shadow-[var(--shadow-soft)] transition-transform duration-300 hover:-translate-y-0.5"
             >
               Start your journey <ArrowRight className="size-4" />
-            </Link>
-            <Link
-              to="/dashboard"
-              className="inline-flex items-center justify-center rounded-full border border-border bg-card px-7 py-3.5 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:border-gold/50"
-            >
-              Explore the platform
             </Link>
           </div>
           <p className="mt-8 text-xs uppercase tracking-[0.22em] text-muted-foreground">

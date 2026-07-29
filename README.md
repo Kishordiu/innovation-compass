@@ -655,15 +655,6 @@ The theme must be cream, warm, advanced, calm, and premium.
 
 Build the full UI with mock data, clean structure, strong responsive behavior, and elegant interactions.
 
-This project was built with [Lovable](https://lovable.dev).
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/27e3da28-5a0f-4690-b703-291505aaae0f).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
 ## Development
 

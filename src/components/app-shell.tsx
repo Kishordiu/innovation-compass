@@ -14,24 +14,27 @@ import {
   LogOut,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { student } from "@/data/mock-data";
 import { Avatar } from "@/components/ui-kit";
+import { useRole } from "@/hooks/use-role";
 
-const navItems = [
-  { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { to: "/ai-mentor", label: "AI Mentor", icon: Sparkles },
-  { to: "/learning", label: "Learning", icon: GraduationCap },
-  { to: "/projects", label: "Project Hub", icon: FolderKanban },
-  { to: "/mentors", label: "Mentor Hub", icon: Users },
-  { to: "/startup", label: "Startup Hub", icon: Rocket },
-  { to: "/notifications", label: "Notifications", icon: Bell },
+const allNavItems = [
+  { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard, roles: ["Student", "Faculty", "Mentor", "Dean", "Admin"] },
+  { to: "/ai-mentor", label: "AI Mentor", icon: Sparkles, roles: ["Student"] },
+  { to: "/learning", label: "Learning", icon: GraduationCap, roles: ["Student", "Faculty"] },
+  { to: "/projects", label: "Project Hub", icon: FolderKanban, roles: ["Student", "Faculty", "Dean", "Admin"] },
+  { to: "/mentors", label: "Mentor Hub", icon: Users, roles: ["Student", "Mentor", "Dean", "Admin"] },
+  { to: "/startup", label: "Startup Hub", icon: Rocket, roles: ["Student", "Dean", "Admin"] },
+  { to: "/notifications", label: "Notifications", icon: Bell, roles: ["Student", "Faculty", "Mentor", "Dean", "Admin"] },
 ];
 
 function NavList({ onNavigate }: { onNavigate?: () => void }) {
   const pathname = useRouterState({ select: (state) => state.location.pathname });
+  const { role } = useRole();
+  const allowedItems = allNavItems.filter((item) => item.roles.includes(role));
+
   return (
-    <nav className="flex flex-col gap-1">
-      {navItems.map((item) => {
+    <nav className="flex min-h-0 flex-col gap-1 overflow-y-auto">
+      {allowedItems.map((item) => {
         const active = pathname === item.to;
         return (
           <Link
@@ -55,6 +58,15 @@ function NavList({ onNavigate }: { onNavigate?: () => void }) {
 }
 
 function SidebarInner({ onNavigate }: { onNavigate?: () => void }) {
+  const { role, profile } = useRole();
+  // We'll use initials from name since profile doesn't have initials pre-computed
+  const initials = profile.name
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .substring(0, 2)
+    .toUpperCase();
+
   return (
     <div className="flex h-full flex-col gap-6 p-5">
       <Link to="/" onClick={onNavigate} className="flex min-w-0 items-center gap-3">
@@ -71,10 +83,10 @@ function SidebarInner({ onNavigate }: { onNavigate?: () => void }) {
 
       <div className="mt-auto rounded-2xl border border-border bg-card p-4">
         <div className="flex min-w-0 items-center gap-3">
-          <Avatar initials={student.initials} className="size-9" />
+          <Avatar initials={initials} className="size-9" />
           <div className="min-w-0">
-            <p className="truncate text-sm font-semibold">{student.name}</p>
-            <p className="truncate text-xs text-muted-foreground">{student.rollNumber}</p>
+            <p className="truncate text-sm font-semibold">{profile.name}</p>
+            <p className="truncate text-xs text-muted-foreground">{role}</p>
           </div>
         </div>
         <Link
@@ -120,7 +132,7 @@ export function AppShell({
               initial={{ x: "-100%" }}
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.45, ease: [0.2, 0.9, 0.3, 1] }}
               className="fixed inset-y-0 left-0 z-50 w-72 border-r border-sidebar-border bg-sidebar lg:hidden"
             >
               <SidebarInner onNavigate={() => setOpen(false)} />
@@ -155,15 +167,23 @@ export function AppShell({
                 <Bell className="size-4" />
                 <span className="absolute right-2.5 top-2.5 size-2 rounded-full bg-gold" />
               </Link>
-              <Avatar initials={student.initials} className="hidden size-10 sm:grid" />
+              <Avatar
+                initials={useRole().profile.name
+                  .split(" ")
+                  .map((n) => n[0])
+                  .join("")
+                  .substring(0, 2)
+                  .toUpperCase()}
+                className="hidden size-10 sm:grid"
+              />
             </div>
           </div>
         </header>
 
         <motion.main
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          initial={{ opacity: 0, y: 12, scale: 0.99 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.5, ease: [0.2, 0.9, 0.3, 1] }}
           className="mx-auto w-full max-w-6xl flex-1 px-4 py-8 sm:px-8 sm:py-10"
         >
           {children}

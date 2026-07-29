@@ -119,8 +119,8 @@
   --sidebar-border: oklch(0.9 0.018 82);
   --sidebar-ring: oklch(0.74 0.098 78);
 
-  --shadow-soft: 0 1px 2px oklch(0.4 0.03 62 / 0.04), 0 8px 24px -12px oklch(0.4 0.03 62 / 0.14);
-  --shadow-lift: 0 2px 4px oklch(0.4 0.03 62 / 0.05), 0 24px 48px -24px oklch(0.4 0.03 62 / 0.26);
+  --shadow-soft: 0 1px 2px oklch(0.2 0.03 62 / 0.03), 0 4px 12px -4px oklch(0.2 0.03 62 / 0.06), 0 12px 32px -16px oklch(0.2 0.03 62 / 0.08);
+  --shadow-lift: 0 4px 8px -2px oklch(0.2 0.03 62 / 0.05), 0 16px 40px -12px oklch(0.2 0.03 62 / 0.12), 0 32px 64px -24px oklch(0.2 0.03 62 / 0.18);
   --gradient-cream: linear-gradient(
     160deg,
     oklch(0.985 0.01 92) 0%,
@@ -167,6 +167,19 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  button,
+  a {
+    touch-action: manipulation;
+    transition: transform 0.15s cubic-bezier(0.2, 0.9, 0.3, 1);
+  }
+  
+  button:active:not(:disabled),
+  a:active {
+    transform: scale(0.97);
   }
 
   h1,
@@ -179,23 +192,40 @@
 }
 
 @utility surface-card {
+  position: relative;
   background-color: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius-2xl);
-  box-shadow: var(--shadow-soft);
+  box-shadow: var(--shadow-soft), inset 0 1px 0 0 oklch(1 0 0 / 0.6);
   transition:
-    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.35s ease;
+    transform 0.5s cubic-bezier(0.2, 0.9, 0.3, 1),
+    box-shadow 0.5s cubic-bezier(0.2, 0.9, 0.3, 1),
+    border-color 0.4s ease;
+  will-change: transform, box-shadow;
 }
 
 @utility lift-hover {
-  transition:
-    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(800px circle at 50% -20%, oklch(0.9 0.05 80 / 0.1), transparent 50%);
+    opacity: 0;
+    transition: opacity 0.5s cubic-bezier(0.2, 0.9, 0.3, 1);
+    pointer-events: none;
+    z-index: 1;
+  }
+
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lift);
+    transform: translateY(-4px) scale(1.005) rotateX(1deg);
+    box-shadow: var(--shadow-lift), inset 0 1px 0 0 oklch(1 0 0 / 0.7);
+    border-color: oklch(0.8 0.05 82);
+    z-index: 10;
+  }
+
+  &:hover::before {
+    opacity: 1;
   }
 }
 
