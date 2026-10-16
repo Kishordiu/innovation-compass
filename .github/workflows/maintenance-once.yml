@@ -45,7 +45,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          ./node_modules/.bin/prettier --write "src/**/*.{ts,tsx,js,jsx,json,css,md}"
+          ./node_modules/.bin/eslint . --fix || true
       - name: Commit lockfile and formatting updates
         shell: bash
         run: |
