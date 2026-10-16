@@ -41,6 +41,11 @@ jobs:
             echo "::error::No supported lockfile found."
             exit 1
           fi
+      - name: Format source files
+        shell: bash
+        run: |
+          set -euo pipefail
+          ./node_modules/.bin/prettier --write "src/**/*.{ts,tsx,js,jsx,json,css,md}"
       - name: Commit lockfile and formatting updates
         shell: bash
         run: |
