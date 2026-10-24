@@ -1,6 +1,4 @@
-# INNOVATION DNA
-
-![Cinematic hero](https://capsule-render.vercel.app/api?type=rect&color=0:070707,100:171717&height=230&text=INNOVATION%20DNA&fontColor=F3F3EE&fontSize=40&fontAlignY=38&desc=AI%20%2F%20STUDENT%20INNOVATION%20ECOSYSTEM&descColor=999991&descSize=12&descAlignY=66&animation=scaleIn)
+![INNOVATION DNA — bespoke brushed-metal project artwork](./assets/readme-metal-hero.svg)
 
 > **AI / STUDENT INNOVATION ECOSYSTEM.**
 
