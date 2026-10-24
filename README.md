@@ -2,39 +2,58 @@
 
 # INNOVATION DNA
 
-> **AI / STUDENT INNOVATION ECOSYSTEM.**
+**A student innovation-ecosystem prototype connecting ideas, learning, projects, and mentorship pathways.**
 
-## THE PREMISE
+Innovation DNA explores how a student could move from curiosity to a concrete project without navigating disconnected tools. The current repository provides a React-based application shell and interaction patterns for the concept; it should not be mistaken for a fully integrated campus-wide service.
 
-Innovation DNA imagines a connected environment for students, mentors, faculty, projects, learning and startup pathways — one ecosystem instead of scattered opportunities.
+## The idea-to-project pathway
 
-## THE EXPERIENCE
+```text
+Interest / curiosity
+        │
+        ▼
+Discover learning and challenge pathways
+        │
+        ▼
+Connect to a project or mentor
+        │
+        ▼
+Organise the work and next steps
+        │
+        ▼
+Carry the project beyond submission day
+```
 
-**Ideas need paths.**  
-**Mentorship should connect to action.**  
-**A project should have a life beyond the submission date.**
+## What the interface is designed to support
 
-## THE SYSTEM
+- **Project discovery:** A structured space to surface work and opportunities.
+- **Mentorship pathways:** A place to connect a learning goal with a person or project.
+- **Learning context:** A clearer relationship between skills, practice, and outcomes.
+- **Continuity:** A project can remain meaningful after an event or submission ends.
 
-Next.js and Framer Motion provide a motion-rich application shell. Planned service boundaries include authentication, structured project data, storage and model-assisted mentoring.
+These are the product direction; treat integrations such as authentication, persistent project records, storage, and AI-assisted mentoring as future work unless the relevant service is configured and verified in the running build.
 
-## THE STACK
+## Stack
 
-Next.js · React · TypeScript · Tailwind CSS · Framer Motion
+React · TypeScript · TanStack Router / Start · Tailwind CSS · Motion
 
-## RUN
+## Run locally
+
+**Requirements:** Node.js and npm.
 
 ```bash
+git clone https://github.com/Kishordiu/innovation-compass.git
+cd innovation-compass
 npm install
 npm run dev
 ```
 
-## PROJECT STATE
+Use the local URL printed by Vite.
 
-**Frontend innovation-ecosystem prototype**
+## Status and next validation steps
 
-Implemented behaviour is documented separately from future integrations so the project story stays honest as the product evolves.
+**Status: front-end innovation-ecosystem prototype.** Before presenting it as a live campus platform, connect and test the required identity, persistence, permission, notification, and mentoring services. Confirm data ownership and access boundaries before loading real student or institutional information.
 
 ---
 
-<p align="center"><strong>K. KISHOR KUMAR</strong><br><sub>ENGINEERING / PRODUCT / SYSTEMS</sub></p>
+<p align="center"><sub>DIU FOUNDRY · LEARNING / COMMUNITY / PRODUCT SYSTEMS</sub></p>
