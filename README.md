@@ -1,5 +1,7 @@
 ![INNOVATION DNA — bespoke brushed-metal project artwork](./assets/readme-metal-hero.svg)
 
+# INNOVATION DNA
+
 > **AI / STUDENT INNOVATION ECOSYSTEM.**
 
 ## THE PREMISE
